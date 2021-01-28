@@ -5,7 +5,7 @@ const apiCountries = axios.create({
 });
 
 const api = axios.create({
-  baseURL: 'http://localhost:3333',
+  baseURL: 'https://backend-places.herokuapp.com',
 });
 
 export { apiCountries, api };
