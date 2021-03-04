@@ -3,6 +3,7 @@ import Header from '../../components/Header';
 import FilterPlaces from '../../components/FilterPlaces';
 import Card from '../../components/Card';
 import Spacing from '../../shared/Spacing';
+
 import * as S from './styled';
 
 const Dashboard: React.FC = () => {

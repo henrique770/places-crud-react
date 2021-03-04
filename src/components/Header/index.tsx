@@ -1,7 +1,9 @@
 import React from 'react';
+
+import Logo from '../../assets/img/logo.png';
+
 import * as S from './styled';
 import * as U from '../../styles/utilities';
-import Logo from '../../assets/img/logo.png';
 
 const Header: React.FC = () => {
   return (

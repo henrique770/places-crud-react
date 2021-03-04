@@ -7,9 +7,11 @@ import React, {
   ReactNode,
   useRef,
 } from 'react';
+
 import uniqid from 'uniqid';
 import swal from 'sweetalert';
 import useOutsideClick from '../../useOutsideClick';
+
 import { apiCountries, api } from '../../../services/api';
 
 interface ItemProps {
@@ -27,6 +29,7 @@ interface PlacesContextData {
   deletePlace: (id: string) => void;
   modalEditCountry: (id?: string) => void;
   modalEdit?: boolean;
+  loading?: boolean;
   itemId: any;
   refModalEdit: any;
   places: ItemProps[];
@@ -43,14 +46,22 @@ const PlacesProvider: React.FC<ProviderProps> = ({ children }) => {
 
   const [modalEdit, setModalEdit] = useState(false);
 
+  const [loading, setLoading] = useState(false);
+
   const [itemId, setItemId] = useState<string>();
 
   // GET
 
   const loadPlaces = useCallback(async () => {
-    const response = await api.get('places');
-    const { data } = response;
-    setPlaces(data);
+    try {
+      setLoading(true);
+      const response = await api.get('places');
+      const { data } = response;
+      setPlaces(data);
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+    }
   }, [setPlaces]);
 
   useEffect(() => {
@@ -149,6 +160,7 @@ const PlacesProvider: React.FC<ProviderProps> = ({ children }) => {
         modalEditCountry,
         refModalEdit,
         modalEdit,
+        loading,
         itemId,
       }}
     >
